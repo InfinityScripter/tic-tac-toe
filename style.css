@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#gameboard {
+    width: 600px;
+    height: 600px;
+    background-color: #000;
+    border-solid: 3px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border: 3px solid #000;
+    box-sizing: border-box;
+    font-size: 100px;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    border:30px solid #2836bd;
+    box-sizing: border-box;
+}
