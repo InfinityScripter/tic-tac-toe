@@ -20,6 +20,6 @@ createBoard ()
 
 function addXorO (e) {
   const display = document.createElement("div")
-  display.classList.add("circle")
+  display.classList.add("cross")
   e.target.append(display)
 }

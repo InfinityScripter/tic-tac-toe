@@ -37,3 +37,33 @@ body {
     border:30px solid #2836bd;
     box-sizing: border-box;
 }
+
+.cross {
+    height: 180px;
+    width: 180px;
+  position: relative;
+}
+
+.cross::before, .cross::after {
+    content: '';
+    position: absolute;
+    background-color: red;
+
+}
+
+.cross::before {
+    height: 180px;
+    width: 30px;
+    top: 0;
+    left: 75px;
+    rotate: 45deg;
+}
+
+.cross::after {
+    height: 30px;
+    width: 180px;
+    top: 75px;
+    left: 0;
+    rotate: 45deg;
+}
+
