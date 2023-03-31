@@ -23,14 +23,37 @@ function createBoard() {
 createBoard ()
 
 function addXorO(e) {
-  const display = document.createElement ("div")
-  display.classList.add (go)
-  e.target.append (display)
-  go = go === "circle" ? "cross" : "circle"
-  infoDisplay.textContent = `it is now ${go}'s turn`
-  e.target.removeEventListener ("click", addXorO)
-  checkScore ()
+  const display = document.createElement("div");
+  display.classList.add(go);
+  e.target.append(display);
+  go = go === "circle" ? "cross" : "circle";
+  e.target.removeEventListener("click", addXorO);
+  checkScore();
+
+  // Если после хода человека нет победителя, делаем ход AI
+  if (infoDisplay.textContent !== "Circle WINS!") {
+    aiMove();
+  }
 }
+
+function aiMove() {
+  const allCells = document.querySelectorAll(".cell");
+  const emptyCells = Array.from(allCells).filter(cell => cell.firstChild === null);
+
+  // Если есть пустые клетки, выбираем случайную и делаем ход
+  if (emptyCells.length > 0) {
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const aiCell = emptyCells[randomIndex];
+
+    const display = document.createElement("div");
+    display.classList.add(go);
+    aiCell.append(display);
+    go = go === "circle" ? "cross" : "circle";
+    aiCell.removeEventListener("click", addXorO);
+    checkScore();
+  }
+}
+
 
 function checkScore() {
   const allCells = document.querySelectorAll (".cell")
@@ -54,36 +77,16 @@ function checkScore() {
     }
   })
 
-  winningCombos.forEach((combo) => {
-    const crossWins = combo.every(cell => allCells[cell].firstChild?.classList.contains('cross'));
+  winningCombos.forEach ((combo) => {
+    const crossWins = combo.every (cell => allCells[cell].firstChild?.classList.contains ('cross'))
     if (crossWins) {
-      infoDisplay.textContent = "Cross WINS!";
-      allCells.forEach(square => square.replaceWith(square.cloneNode(true)));
-      return;
+      infoDisplay.textContent = "Cross WINS!"
+      allCells.forEach(square=> square.replaceWith(square.cloneNode(true)))
+      return
     }
-  });
-
-  // Если нет победителя, проверяем ничью
-  if (!checkDraw()) {
-    // Если не ничья, продолжаем игру
-    infoDisplay.textContent = `It is now ${go}'s turn`;
-  }
-
+  })
 
 }
-
-function checkDraw() {
-  const allCells = document.querySelectorAll(".cell");
-  const allCellsFilled = Array.from(allCells).every(cell => cell.firstChild !== null);
-
-  if (allCellsFilled) {
-    infoDisplay.textContent = "It's a draw!";
-    allCells.forEach(square => square.replaceWith(square.cloneNode(true)));
-    return true;
-  }
-  return false;
-}
-
 
 
 function restartPage() {
