@@ -13,8 +13,8 @@ body {
 }
 
 #gameboard {
-    width: 600px;
-    height: 600px;
+    width: 60vw;
+    height: 60vw;
     background-color: #000;
     border-solid: 3px solid #000;
     display: flex;
@@ -22,12 +22,12 @@ body {
 }
 
 .cell {
-    width: 200px;
-    height: 200px;
+    width: calc(60vw / 3);
+    height: calc(60vw / 3);
     background-color: #fff;
     border: 3px solid #000;
     box-sizing: border-box;
-    font-size: 100px;
+    font-size: calc(90vw / 6);
     color: #000;
     display: flex;
     justify-content: center;
@@ -35,39 +35,37 @@ body {
 }
 
 .circle {
-    height: 180px;
-    width: 180px;
+    height: calc(60vw / 3 - 20px);
+    width: calc(60vw / 3 - 20px);
     border-radius: 50%;
-    border:30px solid #2836bd;
+    border: calc(60vw / 30) solid #2836bd;
     box-sizing: border-box;
 }
 
 .cross {
-    height: 180px;
-    width: 180px;
-  position: relative;
+    height: calc(60vw / 3 - 20px);
+    width: calc(60vw / 3 - 20px);
+    position: relative;
 }
 
 .cross::before, .cross::after {
     content: '';
     position: absolute;
     background-color: red;
-
 }
 
 .cross::before {
-    height: 180px;
-    width: 30px;
+    height: calc(60vw / 3 - 20px);
+    width: calc(60vw / 30);
     top: 0;
-    left: 75px;
-    rotate: 45deg;
+    left: calc(60vw / 6 - 120vw / 60);
+    transform: rotate(45deg);
 }
 
 .cross::after {
-    height: 30px;
-    width: 180px;
-    top: 75px;
+    height: calc(60vw / 30);
+    width: calc(60vw / 3 - 20px);
+    top: calc(60vw / 6 - 120vw / 60);
     left: 0;
-    rotate: 45deg;
+    transform: rotate(45deg);
 }
-
