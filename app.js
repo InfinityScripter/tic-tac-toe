@@ -37,21 +37,24 @@ function addXorO(e) {
 }
 
 function aiMove() {
-  const allCells = document.querySelectorAll(".cell");
-  const emptyCells = Array.from(allCells).filter(cell => cell.firstChild === null);
+  setTimeout(() => {
+    const allCells = document.querySelectorAll(".cell");
+    const emptyCells = Array.from(allCells).filter(cell => cell.firstChild === null);
 
-  // Если есть пустые клетки, выбираем случайную и делаем ход
-  if (emptyCells.length > 0) {
-    const randomIndex = Math.floor(Math.random() * emptyCells.length);
-    const aiCell = emptyCells[randomIndex];
+    // Если есть пустые клетки, выбираем случайную и делаем ход
+    if (emptyCells.length > 0) {
+      const randomIndex = Math.floor(Math.random() * emptyCells.length);
+      const aiCell = emptyCells[randomIndex];
 
-    const display = document.createElement("div");
-    display.classList.add(go);
-    aiCell.append(display);
-    go = go === "circle" ? "cross" : "circle";
-    aiCell.removeEventListener("click", addXorO);
-    checkScore();
-  }
+      const display = document.createElement("div");
+      display.classList.add(go);
+      aiCell.append(display);
+      go = go === "circle" ? "cross" : "circle";
+      aiCell.removeEventListener("click", addXorO);
+      checkScore();
+    }
+  }, 350);
+
 }
 
 
@@ -84,6 +87,7 @@ function checkScore() {
       allCells.forEach(square=> square.replaceWith(square.cloneNode(true)))
       return
     }
+
   })
 
 }
